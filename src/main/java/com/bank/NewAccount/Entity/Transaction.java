@@ -2,24 +2,27 @@ package com.bank.NewAccount.Entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@Table(name = "Transaction")
 public class Transaction {
 	@Id
 	@GeneratedValue
@@ -34,8 +37,9 @@ public class Transaction {
 	private Date dateTransaction;
 
 	
-	@OneToOne
-    @JoinColumn(name="account_id", nullable=false)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "account_id", referencedColumnName = "account_id")
+	@JsonIgnoreProperties("transactions")
     private Account account;
 
 

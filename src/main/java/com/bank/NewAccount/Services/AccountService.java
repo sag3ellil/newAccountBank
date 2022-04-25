@@ -51,13 +51,12 @@ public class AccountService {
 	{
 		return accountConverter.convert(a);
 	}
+	
     @Transactional
-	public AccountView transaction(long idNewAcc, double initialCredit) {
+	public Account transaction(long idNewAcc, double initialCredit) {
      Account acc = this.accountRepo.findById(idNewAcc).orElseThrow(() -> new EntityNotFoundException(messageUtil.getMessage("Account.notFound", idNewAcc) ));
      acc.setAmount(initialCredit);
-     Account accUpdated =this.accountRepo.saveAndFlush(acc);
-     return this.convertToView(accUpdated);
-
+     return this.accountRepo.save(acc);
 	}
 	
 }
