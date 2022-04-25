@@ -1,24 +1,26 @@
 package com.bank.NewAccount.Entity;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 @Table(name="Account")
 public class Account {
@@ -30,12 +32,15 @@ public class Account {
 	@Column(name="amount")
 	private Double amount;
 	
-	@OneToOne
-    @JoinColumn(name="costumer_id", nullable=false)
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "costumer_id", referencedColumnName = "costumer_id")
+    @JsonIgnoreProperties("accounts")
     private Costumer costumer;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-    private Set<Transaction> transaction;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("account")
+    private List<Transaction> transactions = new ArrayList<>();
 
 	
 	public Account(Double amount, Costumer costumer) {

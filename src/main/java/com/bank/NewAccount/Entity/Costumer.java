@@ -1,32 +1,32 @@
 package com.bank.NewAccount.Entity;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "costumer")
 public class Costumer {
 	@Id
 	@GeneratedValue
 	@Column(name = "costumer_id")
-	private long id;
+	private long costumerId;
 
 	@NonNull
 	@Column(name = "name")
@@ -37,8 +37,9 @@ public class Costumer {
 	private String surname;
 
 	
-	@OneToMany(cascade = CascadeType.ALL)
-    private Set<Account> accounts;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "costumer", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("costumer")
+    private List<Account> accounts = new ArrayList<>();
 
 
 	public Costumer(@NonNull String name, @NonNull String surname) {
@@ -52,20 +53,20 @@ public class Costumer {
 	}
 	
 	
-	public Set<Account> getAccounts() {
+	public List<Account> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(Set<Account> accounts) {
+	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
 
 	public long getId() {
-		return id;
+		return costumerId;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.costumerId = id;
 	}
 
 	public String getName() {
