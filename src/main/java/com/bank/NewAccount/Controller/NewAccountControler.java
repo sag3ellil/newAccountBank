@@ -18,16 +18,17 @@ import com.bank.NewAccount.Services.CostumerService;
 import com.bank.NewAccount.Services.TransactionTrackService;
 import com.bank.NewAccount.error.EntityNotFoundException;
 import com.bank.NewAccount.util.MessageUtil;
+import com.bank.NewAccount.view.CostumerView;
 import com.bank.NewAccount.view.TransactionView;
 
 @RestController
 @RequestMapping(path = "/capBE")
 public class NewAccountControler {
 
-	private CostumerService costumertSer;
-	private AccountService accountSer;
-	private MessageUtil messageUtil;
-	private TransactionTrackService transTrackSer;
+	private final CostumerService costumertSer;
+	private final AccountService accountSer;
+	private final MessageUtil messageUtil;
+	private final TransactionTrackService transTrackSer;
 
 	public NewAccountControler(CostumerService costumertSer, AccountService accountSer, MessageUtil messageUtil,
 			TransactionTrackService transTrackSer) {
@@ -56,8 +57,10 @@ public class NewAccountControler {
 
 	@GetMapping(value = "/getAccountsByCostumer/{customerID}")
 	@ResponseBody
-	public Costumer getAccountsByCostumer(@PathVariable Long customerID) {
-		return this.costumertSer.getCostumerByID(customerID);
+	public CostumerView getAccountsByCostumer(@PathVariable Long customerID) {
+		Costumer c = this.costumertSer.getCostumerByID(customerID);
+
+		return this.costumertSer.convertToCostumerView(c);
 	}
 
 }
