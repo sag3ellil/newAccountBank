@@ -16,6 +16,7 @@ public class CostumerConverter implements Converter<Costumer, CostumerView> {
 		view.setCostumerID(costumer.getId());
 		view.setName(costumer.getName());
 		view.setSurname(costumer.getSurname());
+		view.setBalance(costumer.getBalance());
 		return view;
 	}
 

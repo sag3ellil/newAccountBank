@@ -36,18 +36,48 @@ public class Costumer {
 	@Column(name = "surname")
 	private String surname;
 
+	@NonNull
+	@Column(name = "balance")
+	private Double balance;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "costumer", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("costumer")
     private List<Account> accounts = new ArrayList<>();
 
 
-	public Costumer(@NonNull String name, @NonNull String surname) {
+	public Costumer(@NonNull String name, @NonNull String surname, @NonNull double balance) {
 		super();
 		this.name = name;
 		this.surname = surname;
+		this.balance=balance;
 	}
+	
+	
     
+	public long getCostumerId() {
+		return costumerId;
+	}
+
+
+
+	public void setCostumerId(long costumerId) {
+		this.costumerId = costumerId;
+	}
+
+
+
+	public Double getBalance() {
+		return balance;
+	}
+
+
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+
+
 	public Costumer() {
 		super();
 	}

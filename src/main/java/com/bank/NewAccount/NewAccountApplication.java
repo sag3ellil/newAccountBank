@@ -25,7 +25,7 @@ public class NewAccountApplication {
 	CommandLineRunner runner(CostumerRepository costumerRepo) {
 		return args -> {
 			// We create this user to have an existed user for our example
-			Costumer c = new Costumer("Bouraoui", "Ziche");
+			Costumer c = new Costumer("Bouraoui", "Ziche",20.0);
 			costumerRepo.save(c);
 
 		};

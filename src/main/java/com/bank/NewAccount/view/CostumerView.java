@@ -13,18 +13,29 @@ public class CostumerView {
 
 	private String surname;
 
-	private List<Account> accounts= new ArrayList<>();
+	private double balance;
 
-	public CostumerView(long costumerID, String name, String surname, List<Account> accounts) {
+	private List<Account> accounts = new ArrayList<>();
+
+	public CostumerView(long costumerID, String name, String surname, List<Account> accounts, double balance) {
 		super();
 		this.costumerID = costumerID;
 		this.name = name;
 		this.surname = surname;
 		this.accounts = accounts;
+		this.balance = balance;
 	}
 
 	public CostumerView() {
 		super();
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 	public long getCostumerID() {
@@ -58,6 +69,5 @@ public class CostumerView {
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
-	
-	
+
 }

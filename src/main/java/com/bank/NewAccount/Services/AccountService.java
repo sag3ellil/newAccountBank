@@ -47,7 +47,8 @@ public class AccountService {
     @Transactional
 	public Account transaction(long idNewAcc, double initialCredit) {
      Account acc = this.accountRepo.findById(idNewAcc).orElseThrow(() -> new EntityNotFoundException(messageUtil.getMessage("Account.notFound", idNewAcc) ));
-     acc.setAmount(acc.getAmount() + initialCredit);
+     acc.setAmount( initialCredit);
+     acc.getCostumer().setBalance(acc.getCostumer().getBalance()+initialCredit);
      return this.accountRepo.save(acc);
 	}
 	

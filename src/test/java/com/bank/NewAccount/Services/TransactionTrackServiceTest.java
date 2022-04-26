@@ -42,7 +42,7 @@ public class TransactionTrackServiceTest {
 	public void saveTransaction() {
 		TransactionTrackService transactionService = new TransactionTrackService(transactionRepository, msgUtil,
 				transactionConverter);
-		Costumer c = entityManager.persist(new Costumer("test", "ben test"));
+		Costumer c = entityManager.persist(new Costumer("test", "ben test",0.0));
 		Costumer cToUse = costumerRepository.save(c);
 		Account account = entityManager.persist(new Account(0.0, cToUse));
 

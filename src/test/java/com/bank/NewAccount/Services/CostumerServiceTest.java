@@ -38,7 +38,7 @@ public class CostumerServiceTest {
 	public void getCostumerByIDTest()
 	{
 		CostumerService costumerService = new CostumerService(costumerRepository, msgUtil,costumerConverter);
-		Costumer c = entityManager.persist(new Costumer("test", "ben test"));
+		Costumer c = entityManager.persist(new Costumer("test", "ben test",0.0));
 		Costumer cos =costumerService.getCostumerByID(c.getId());
 		Assertions.assertThat(cos.getName()).isEqualTo(c.getName());
 		Assertions.assertThat(cos.getSurname()).isEqualTo(c.getSurname());

@@ -40,7 +40,7 @@ public class AccountServiceTest {
 	@DisplayName("Should find account by costumer Id")
 	public void getAccountsByCostumerID() throws Exception {
 		AccountService accountService = new AccountService(accountRepository, accountConverter, msgUtil);
-		Costumer c = entityManager.persist(new Costumer("test", "ben test"));
+		Costumer c = entityManager.persist(new Costumer("test", "ben test",20.0));
 		List<Account> lstAcc = accountService.getAccountsByCostumerID(c.getId());
 		List<Account> accountExpected = new ArrayList<>();
 		Assertions.assertThat(lstAcc).isEqualTo(accountExpected);
@@ -51,7 +51,7 @@ public class AccountServiceTest {
 	public void addNewAccountToExistenCostTest() throws Exception {
 		AccountService accountService = new AccountService(accountRepository, accountConverter, msgUtil);
 
-		Costumer c = entityManager.persist(new Costumer("test", "ben test"));
+		Costumer c = entityManager.persist(new Costumer("test", "ben test",20.0));
 
 		long id = accountService.addNewAccountToExistenCost(c);
 		Assertions.assertThat(id).isNotEqualTo(null);
@@ -63,7 +63,7 @@ public class AccountServiceTest {
 		AccountService accountService = new AccountService(accountRepository, accountConverter, msgUtil);
 
 		Account a = new Account();
-		Costumer cos = new Costumer("name","surname"); 
+		Costumer cos = new Costumer("name","surname",20.0); 
 		a.setAmount(20.0);
 		a.setCostumer(cos);
 
@@ -81,7 +81,7 @@ public class AccountServiceTest {
 	public void TransactionTest() {
 		AccountService accountService = new AccountService(accountRepository, accountConverter, msgUtil);
 
-		Costumer c = entityManager.persist(new Costumer("test", "ben test"));
+		Costumer c = entityManager.persist(new Costumer("test", "ben test",0.0));
 		Account a = entityManager.persist(new Account(0.0, c));
 		a.setAmount(30.0);
 		Account expected = this.accountRepository.save(a);
