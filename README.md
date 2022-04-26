@@ -21,6 +21,7 @@ localhost:8083/capBE/add/newAccount/ExistingCostumer/1 [Put]
 localhost:8083/capBE/getAccountsByCostumer/1 [Get]
 
 curl -H "Content-Type: application/json" -X PUT http://localhost:8083/capBE/add/newAccount/ExistingCostumer/1 -d "{\"initialCredit\" : 20}
+
 curl -H  GET http://localhost:8083/capBE/getAccountsByCostumer/1
 
 # run tests : 
