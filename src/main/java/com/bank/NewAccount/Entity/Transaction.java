@@ -39,7 +39,7 @@ public class Transaction {
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "account_id", referencedColumnName = "account_id")
-	@JsonIgnoreProperties("transactions")
+	//@JsonIgnoreProperties("transactions")
     private Account account;
 
 
