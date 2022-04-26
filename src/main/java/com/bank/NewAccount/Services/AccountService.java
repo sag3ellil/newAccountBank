@@ -26,14 +26,6 @@ public class AccountService {
     	this.messageUtil = messageUtil;
     }
 
-    public Account addNewAccount(Account account) {
-        return accountRepo.save(account);
-    }
-    
-    public List<Account> getAllAccount()
-    {
-    	return accountRepo.findAll();
-    }
     
     public List<Account> getAccountsByCostumerID(long costID)
     {
@@ -55,7 +47,7 @@ public class AccountService {
     @Transactional
 	public Account transaction(long idNewAcc, double initialCredit) {
      Account acc = this.accountRepo.findById(idNewAcc).orElseThrow(() -> new EntityNotFoundException(messageUtil.getMessage("Account.notFound", idNewAcc) ));
-     acc.setAmount(initialCredit);
+     acc.setAmount(acc.getAmount() + initialCredit);
      return this.accountRepo.save(acc);
 	}
 	
