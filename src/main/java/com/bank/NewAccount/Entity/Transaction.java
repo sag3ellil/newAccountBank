@@ -34,7 +34,7 @@ public class Transaction {
 	private Double amount;
 
 	@NonNull
-	private Date dateTransaction;
+	private String dateTransaction;
 
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -43,7 +43,7 @@ public class Transaction {
     private Account account;
 
 
-	public Transaction(@NonNull Double amount, @NonNull Date dateTransaction, Account account) {
+	public Transaction(@NonNull Double amount, @NonNull String dateTransaction, Account account) {
 		super();
 		this.amount = amount;
 		this.dateTransaction = dateTransaction;
@@ -77,12 +77,12 @@ public class Transaction {
 	}
 
 
-	public Date getDateTransaction() {
+	public String getDateTransaction() {
 		return dateTransaction;
 	}
 
 
-	public void setDateTransaction(Date dateTransaction) {
+	public void setDateTransaction(String dateTransaction) {
 		this.dateTransaction = dateTransaction;
 	}
 

@@ -9,7 +9,7 @@ public class TransactionView {
 
 	private Double amount;
 
-	private Date dateTransaction;
+	private String dateTransaction;
 
 	private Account account;
 
@@ -17,7 +17,7 @@ public class TransactionView {
 		super();
 	}
 
-	public TransactionView(long id, Double amount, Date dateTransaction, Account account) {
+	public TransactionView(long id, Double amount, String dateTransaction, Account account) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -41,11 +41,11 @@ public class TransactionView {
 		this.amount = amount;
 	}
 
-	public Date getDateTransaction() {
+	public String getDateTransaction() {
 		return dateTransaction;
 	}
 
-	public void setDateTransaction(Date dateTransaction) {
+	public void setDateTransaction(String dateTransaction) {
 		this.dateTransaction = dateTransaction;
 	}
 
