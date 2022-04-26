@@ -82,34 +82,15 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<id>deploy-docker</id>
-			<properties>
-				<maven.deploy.skip>true</maven.deploy.skip>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.google.cloud.tools</groupId>
-						<artifactId>jib-maven-plugin</artifactId>
-						<version>2.2.0</version>
-						<configuration>
-							<to>
-								<image>${DockerHubUsername}/newaccountbank-ci-cd-process</image>
-								<tags>
-									<tag>${project.version}</tag>
-									<tag>latest</tag>
-								</tags>
-							</to>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
-	<!-- <build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> 
-		<artifactId>spring-boot-maven-plugin</artifactId> </plugin> </plugins> </build> -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<finalName>newaccountbank-ci-cd-process</finalName>
+	</build>
 
 </project>
